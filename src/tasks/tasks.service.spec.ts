@@ -37,8 +37,8 @@ describe('TasksService', () => {
             ];
 
             jest.spyOn(tasksRepository, 'find').mockResolvedValue(tasks as any);
-
-            const result = await service.listTasks();
+            var userId = '943118cd-f627-4547-ba34-bae23ac24e3f';
+            const result = await service.listTasks(userId);
             expect(result).toEqual(tasks);
         });
 
@@ -46,8 +46,8 @@ describe('TasksService', () => {
             const tasks = [];
 
             jest.spyOn(tasksRepository, 'find').mockResolvedValue(tasks as any);
-
-            const result = await service.listTasks();
+            var userId = '943118cd-f627-4547-ba34-bae23ac24e3f';
+            const result = await service.listTasks(userId);
             expect(result).toEqual(tasks);
         });
     });
