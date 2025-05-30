@@ -12,7 +12,7 @@ export class AuthService {
     ) {}
 
     async signIn(email: string, pass: string): Promise<any> {
-        const user = await this.usersService.findOne(email);
+        const user = await this.usersService.findByEmail(email);
 
         if (!user) {
             this.logger.log(`User with email ${email} not found`);

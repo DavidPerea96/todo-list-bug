@@ -13,7 +13,11 @@ export class TasksService {
         private readonly tasksRepository: Repository<Task>,
     ) {}
 
+    // ********************************* */
+
+    // Method to find all tasks that belong to a user
     async listTasks(userId : string) {
+        // Using TypeORM to create a query builder to find tasks by user ID
         const tasks = await this.tasksRepository
         .createQueryBuilder('tasks')
         .leftJoinAndSelect('tasks.owner', 'owner')
@@ -23,8 +27,9 @@ export class TasksService {
         return tasks;
     }
 
-
+    // Method to find a specific task by ID
     async getTask(id: string) {
+        // Using TypeORM to create a query builder to find a task by its ID
         const task = await this.tasksRepository
             .createQueryBuilder('tasks')
             .leftJoinAndSelect('tasks.owner', 'owner')
@@ -32,7 +37,8 @@ export class TasksService {
             .getOne();
         return task;
     }
- 
+    
+    // Method to edit a task
     async editTask(tasksDto : TasksDto) {
         await this.tasksRepository.update(tasksDto.id, tasksDto);
         console.log(tasksDto);
