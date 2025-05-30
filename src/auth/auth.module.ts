@@ -17,6 +17,7 @@ import { AuthGuard } from './auth.guard';
     ],
     controllers: [AuthController],
     providers: [AuthService,
+        // Register the AuthGuard as a global guard
         {
             provide: 'APP_GUARD',
             useClass: AuthGuard
