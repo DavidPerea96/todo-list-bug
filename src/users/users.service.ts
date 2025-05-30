@@ -2,6 +2,7 @@ import { Injectable, Logger } from '@nestjs/common';
 import { Repository } from 'typeorm';
 import { User } from '../entities/user.entity';
 import { InjectRepository } from '@nestjs/typeorm';
+import { UserDto } from './user.dto';
 
 @Injectable()
 export class UsersService {
@@ -11,11 +12,11 @@ export class UsersService {
         private readonly usersRepository: Repository<User>,
     ) {}
 
-    async create(body: any) {
+    async create(userObject: UserDto) {
         const user = new User();
-        user.email = body.email;
-        user.pass = body.password;
-        user.fullname = body.fullname;
+        user.email = userObject.email;
+        user.pass = userObject.pass;
+        user.fullname = userObject.fullname;
 
         await this.usersRepository.save(user);
 

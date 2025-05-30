@@ -3,6 +3,7 @@ import {
     ExecutionContext,
     Injectable,
     UnauthorizedException,
+    SetMetadata
 } from '@nestjs/common';
 import { jwtConstants } from './constants';
 import { IS_PUBLIC_KEY } from './is-public.decorator';
