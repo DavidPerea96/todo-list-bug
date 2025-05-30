@@ -17,7 +17,7 @@ export class TasksService {
         const tasks = await this.tasksRepository
         .createQueryBuilder('tasks')
         .leftJoinAndSelect('tasks.owner', 'owner')
-        .where(`tasks.owner.id = "${userId}"`)
+        .where (`tasks.owner.id = :"${userId}"`, { userId })
         .getMany();
 
         return tasks;
@@ -28,7 +28,7 @@ export class TasksService {
         const task = await this.tasksRepository
             .createQueryBuilder('tasks')
             .leftJoinAndSelect('tasks.owner', 'owner')
-            .where(`tasks.id = "${id}"`)
+            .where(`tasks.id = :"${id}"`, { id })
             .getOne();
         return task;
     }
